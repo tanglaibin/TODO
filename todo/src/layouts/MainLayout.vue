@@ -17,6 +17,12 @@
 
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
+      <div class="q-px-lg q-pt-xl q-mb-md">
+        <div class="text-h3">Todo</div>
+        <div class="text-subtitle1">{{todaysDate}}</div>
+      </div>
+
+      <q-img src="statics/mount.jpeg" class="header-image absolute-top "></q-img>
     </q-header>
 
     <q-drawer
@@ -43,6 +49,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import { date } from 'quasar'
 
 export default {
   name: 'MainLayout',
@@ -50,7 +57,12 @@ export default {
   components: {
     EssentialLink
   },
-
+  computed: {
+    todaysDate() {
+      let timeStamp = Date.now()
+      return date.formatDate(timeStamp, 'dddd D MMMM')
+    }
+  },
   data () {
     return {
       leftDrawerOpen: false,
@@ -96,3 +108,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.header-image{
+height: 100%;
+z-index: -1;
+opacity: 0.2;
+filter: grayscale(100%);
+}
+</style>
